@@ -1,6 +1,8 @@
-# project-begin
+# project-begin-skill
 
-`project-begin` 是一个面向 AI coding agent 的项目启动器：它把项目背景、协作规则、计划/状态边界和 Git 工作流写进仓库，让人和 Agent 在同一套上下文上工作。
+`project-begin-skill` 是 `project-begin` skill 的开源仓库。它面向 AI coding agent，把项目背景、协作规则、计划/状态边界和 Git 工作流写进仓库，让人和 Agent 在同一套上下文上工作。
+
+仓库名是 `project-begin-skill`，skill 的调用名仍是 `project-begin`，以保持现有安装和调用方式兼容。
 
 它不是脚手架，也不修改业务代码。运行后会在目标项目中建立三个稳定入口：
 
@@ -67,7 +69,7 @@ Agent 可以检查结构、生成文档、实现改动、运行验证并报告�
 将本仓库放入你的 Codex skills 目录后，在目标项目中调用 `project-begin`：
 
 ```powershell
-git clone https://github.com/kennyLeeCrunchy/project-begin.git "$env:USERPROFILE\.codex\skills\project-begin"
+git clone https://github.com/kennyLeeCrunchy/project-begin-skill.git "$env:USERPROFILE\.codex\skills\project-begin"
 ```
 
 然后在目标项目中请求：

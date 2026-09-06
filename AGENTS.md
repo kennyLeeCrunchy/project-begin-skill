@@ -4,7 +4,7 @@
 
 ## 项目简介
 
-本仓库维护 `project-begin` skill：它为 AI coding agent 初始化项目入口文档、plan/state 协作边界和 Git 协作规则。项目服务需要在 AI 开发中保持上下文一致、文档可追溯和多人协作稳定的开发者与 Agent。仓库范围只包含 skill 说明、Agent 配置、可复用模板和协作文档，不包含具体业务应用代码。
+本仓库 `project-begin-skill` 维护 `project-begin` skill：它为 AI coding agent 初始化项目入口文档、plan/state 协作边界和 Git 协作规则。项目服务需要在 AI 开发中保持上下文一致、文档可追溯和多人协作稳定的开发者与 Agent。仓库范围只包含 skill 说明、Agent 配置、可复用模板和协作文档，不包含具体业务应用代码。
 
 ## 技术栈与目录职责
 
