@@ -1,0 +1,60 @@
+---
+name: project-begin
+description: Initialize or repair a project's AGENTS.md, collaboration workflow, and Git workflow from reusable project-start templates. Use when the user says project-begin, asks to initialize Agent project docs, or wants the standard plan/state workflow installed.
+metadata:
+  short-description: Bootstrap project Agent docs
+---
+
+# Project Begin
+
+Initialize a project's Agent entrypoint and reusable collaboration workflow without discarding project-specific rules.
+
+## Required outputs
+
+Every successful run leaves all three files present and internally consistent:
+
+- `AGENTS.md`: a concise, project-specific entrypoint with no inferable template placeholders left unresolved.
+- `docs/agent-workflow.md`: the reusable plan/state workflow, linked from `AGENTS.md`.
+- `docs/git-workflow.md`: reusable Git branch, worktree, commit, merge, and multi-agent collaboration rules, linked from `AGENTS.md`.
+
+Use `assets/AGENTS.md.template` as the entrypoint structure, `assets/agent-workflow.md.template` as the plan/state workflow source, and `assets/git-workflow.md.template` as the Git collaboration source.
+
+## Workflow
+
+1. Treat the current working directory as the target unless the user gives another path.
+2. Inspect the repository lightly before writing: directory names, package/config files, runtime files, existing docs, and existing `AGENTS.md`, `docs/agent-workflow.md`, and `docs/git-workflow.md`. Do not read `plan.md` or `state.md` unless the user separately authorizes it under the repository rules.
+3. Read all three template assets completely before deciding changes.
+4. Preserve existing project-specific rules. When the user explicitly asks to initialize or repair the project, merge non-conflicting existing content into the template structure. Ask only when a real conflict would require dropping or materially changing a user-authored rule.
+5. Fill project-specific sections from repository evidence:
+   - state what the project does, its current scope boundary, and who or what it serves;
+   - identify actual runtime, dependency management, key directories, configuration files, and validation commands;
+   - record known safety, architecture, and integration constraints.
+   Do not leave a placeholder when the answer is discoverable. If a fact is genuinely unknown, write a clear “not yet defined” statement instead of bracketed template text.
+6. Create or merge `docs/agent-workflow.md`. Keep the reusable plan/state rules intact unless the repository already has stricter compatible rules. The installed workflow must reserve `plan.md` creation or updates for major PRDs, new product phases, material cross-module changes, or an explicit user request; small follow-ups must not trigger plan churn.
+7. Create or merge `docs/git-workflow.md`. Keep its reusable rules for a stable `main`, feature-oriented branches, isolated worktrees for concurrent agents, contract-first coordination, scoped staging, conflict resolution, validation, and cleanup. Add project-specific repository topology only to the installed project document, never to the reusable template.
+8. Ensure every official `/docs` document is represented in the `AGENTS.md` navigation, including `docs/agent-workflow.md` and `docs/git-workflow.md`.
+9. Validate the result before reporting completion.
+
+## Completion gate
+
+Do not report success until all checks pass:
+
+- `AGENTS.md` exists and contains a concrete project introduction.
+- `docs/agent-workflow.md` exists.
+- `docs/git-workflow.md` exists.
+- `AGENTS.md` links to `docs/agent-workflow.md`, `docs/git-workflow.md`, and all current official docs.
+- No bracketed template placeholder remains when repository evidence can resolve it.
+- Existing project-specific constraints are preserved.
+- The workflow does not treat small requirements, config tweaks, bugfixes, or documentation edits as plan-update triggers.
+- The final report lists files created, merged, or left unchanged.
+
+If any required output cannot be written, report the initialization as incomplete rather than silently substituting an “equivalent” setup.
+
+## Constraints
+
+- Keep `AGENTS.md` concise; put long workflow rules, contracts, API details, and architecture notes under `/docs`.
+- Keep Git templates project-agnostic: do not include repository names, absolute paths, product-specific directory layouts, or assumptions about a particular hosting provider.
+- Do not delete `plan.md`, `state.md`, or existing documentation.
+- This skill installs plan/state rules but does not itself create, read, or update `plan.md` or `state.md` unless the user separately requests it.
+- Do not expose secrets while inspecting environment configuration.
+- Do not modify product code merely to make the documentation template look complete.

@@ -1,0 +1,6 @@
+outputs/
+work/
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
