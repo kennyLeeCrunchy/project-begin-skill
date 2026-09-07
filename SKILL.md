@@ -19,10 +19,20 @@ Every successful run leaves all three files present and internally consistent:
 
 Use `assets/AGENTS.md.template` as the entrypoint structure, `assets/agent-workflow.md.template` as the plan/state workflow source, and `assets/git-workflow.md.template` as the Git collaboration source.
 
+## README 管理
+
+`README.md` 是面向人的项目说明和上手入口，与面向 Agent 的 `AGENTS.md`、详细协作规则 `/docs` 分工不同。
+
+- 初始化前读取现有 `README.md`，保留其中的项目事实和项目特定规则。
+- README 记录项目定位、安装/运行/验证方式、主要目录、配置、使用方式、贡献和许可证等人类需要的信息。
+- 当安装方式、用户可见行为、配置或项目范围发生变化时更新 README；仅内部实现、局部 bugfix 或 Agent 协作细节不重复写入 README。
+- 不把 `plan.md`、`state.md` 的交接流水账或完整 Agent 规则复制到 README；README 可以链接到 `AGENTS.md` 和 `/docs`。
+- README 缺失时，只有在用户要求或项目需要公开上手入口时才新建；skill 的普通初始化不强制创建 README。
+
 ## Workflow
 
 1. Treat the current working directory as the target unless the user gives another path.
-2. Inspect the repository lightly before writing: directory names, package/config files, runtime files, existing docs, and existing `AGENTS.md`, `docs/agent-workflow.md`, and `docs/git-workflow.md`. Do not read `plan.md` or `state.md` unless the user separately authorizes it under the repository rules.
+2. Inspect the repository lightly before writing: directory names, package/config files, runtime files, existing `README.md`, other docs, and existing `AGENTS.md`, `docs/agent-workflow.md`, and `docs/git-workflow.md`. Do not read `plan.md` or `state.md` unless the user separately authorizes it under the repository rules.
 3. Read all three template assets completely before deciding changes.
 4. Preserve existing project-specific rules. When the user explicitly asks to initialize or repair the project, merge non-conflicting existing content into the template structure. Ask only when a real conflict would require dropping or materially changing a user-authored rule.
 5. Fill project-specific sections from repository evidence:
@@ -33,7 +43,8 @@ Use `assets/AGENTS.md.template` as the entrypoint structure, `assets/agent-workf
 6. Create or merge `docs/agent-workflow.md`. Keep the reusable plan/state rules intact unless the repository already has stricter compatible rules. The installed workflow must reserve `plan.md` creation or updates for major PRDs, new product phases, material cross-module changes, or an explicit user request; small follow-ups must not trigger plan churn.
 7. Create or merge `docs/git-workflow.md`. Keep its reusable rules for a stable `main`, feature-oriented branches, isolated worktrees for concurrent agents, contract-first coordination, scoped staging, conflict resolution, validation, and cleanup. Add project-specific repository topology only to the installed project document, never to the reusable template.
 8. Ensure every official `/docs` document is represented in the `AGENTS.md` navigation, including `docs/agent-workflow.md` and `docs/git-workflow.md`.
-9. Validate the result before reporting completion.
+9. If the project has a README, keep its human-facing usage and documentation links consistent; do not create README churn for an internal-only change.
+10. Validate the result before reporting completion.
 
 ## Completion gate
 
