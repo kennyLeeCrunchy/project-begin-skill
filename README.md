@@ -66,11 +66,34 @@ Agent 可以检查结构、生成文档、实现改动、运行验证并报告�
 
 ## 使用
 
-将本仓库放入你的 Codex skills 目录后，在目标项目中调用 `project-begin`：
+### 方式一：让 Codex 直接安装（推荐）
+
+在 Codex 对话中调用 `$skill-installer`，并告诉它从这个 GitHub 仓库安装：
+
+```text
+$skill-installer
+请从 https://github.com/kennyLeeCrunchy/project-begin-skill 安装 project-begin skill。
+```
+
+### 方式二：下载 ZIP 放入 skills 目录
+
+下载 [最新 ZIP](https://github.com/kennyLeeCrunchy/project-begin-skill/archive/refs/heads/main.zip)，解压后把 `project-begin-skill-main` 重命名为 `project-begin`，放入你的 Codex skills 目录。
+
+Windows 常见路径是：
+
+```text
+C:\Users\<你的用户名>\.codex\skills\project-begin\SKILL.md
+```
+
+如果你的 Codex 使用 `.agents\skills` 作为用户 skills 目录，就放到对应的 `.agents\skills\project-begin`。关键是 `SKILL.md` 必须直接位于 `project-begin` 目录下，不能多套一层 `project-begin-skill-main`。
+
+### 方式三：Git clone（适合需要持续更新的人）
 
 ```powershell
 git clone https://github.com/kennyLeeCrunchy/project-begin-skill.git "$env:USERPROFILE\.codex\skills\project-begin"
 ```
+
+Codex 通常会自动发现新 skill；如果列表里没有出现，重启 Codex。
 
 ### 第一个项目对话怎么用
 
