@@ -1,6 +1,6 @@
 ---
 name: project-begin
-description: Initialize or repair a project's AGENTS.md, collaboration workflow, and Git workflow from reusable project-start templates. Use when the user says project-begin, asks to initialize Agent project docs, or wants the standard plan/state workflow installed.
+description: Initialize or repair a project's Agent docs and collaboration workflow once at project setup. Use when the user says project-begin, asks to initialize or repair Agent project docs, or wants the standard plan/state workflow installed; do not use it as a daily task router.
 metadata:
   short-description: Bootstrap project Agent docs
 ---
@@ -8,6 +8,8 @@ metadata:
 # Project Begin
 
 Initialize a project's Agent entrypoint and reusable collaboration workflow without discarding project-specific rules.
+
+This is a project-setup and explicit documentation-repair workflow. It is not a daily task router: after the project documents exist, ordinary task routing and Git decisions follow `AGENTS.md` and the linked `/docs` rules.
 
 ## Required outputs
 

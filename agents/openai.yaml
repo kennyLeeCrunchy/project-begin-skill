@@ -1,6 +1,6 @@
 interface:
   display_name: "Project Begin"
-  short_description: "Initialize project Agent docs and workflow safely."
-  default_prompt: "Use $project-begin to initialize this project with the reusable Agent documentation template."
+  short_description: "Initialize project Agent docs once; keep daily work in AGENTS.md."
+  default_prompt: "Use $project-begin once to initialize or repair this project's Agent documentation and workflow."
 policy:
   allow_implicit_invocation: true
