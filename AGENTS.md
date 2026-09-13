@@ -44,6 +44,15 @@
 - 仅修改内部逻辑、样式、业务文案，或不改变接口和结构的 bugfix，不强制更新目标项目文档。
 - 详细 plan/state 规则见 `docs/agent-workflow.md`；详细 Git 规则见 `docs/git-workflow.md`。
 
+## Git 与并行开发
+
+- 默认在当前分支开发；除非用户明确要求，否则不主动创建、切换或删除 branch / worktree。
+- `main` 应保持可运行；修改前检查 `git status`，不得覆盖、回退或提交用户及其他任务的未提交改动。
+- 分支按任务或功能划分，不按前端、后端或 Agent 划分。
+- 多个任务需要并行修改同一仓库时，使用独立 branch + worktree；串行开发不需要 worktree。
+- 并行任务涉及共享 API、Schema、公共类型或核心状态时，先确定契约再开发。
+- 合并或提交前检查 diff，并运行与改动相关的测试。
+
 ## 环境与配置
 
 - 文档格式：Markdown、YAML。
