@@ -48,7 +48,7 @@
 ## Git 与并行开发
 
 - 默认在当前分支开发；除非用户明确要求，否则不主动创建、切换或删除 branch / worktree。
-- `main` 应保持可运行；修改前检查 `git status`，不得覆盖、回退或提交用户及其他任务的未提交改动。
+- `main` 应保持可运行；修改前及创建/切换 branch / worktree 前检查 `git status`。创建 branch 本身不要求先提交，但要把当前未提交改动带到新 branch / worktree 时，先提交（优先）或在用户明确要求下 stash；不得自动提交、stash 或丢弃改动。
 - 分支按任务或功能划分，不按前端、后端或 Agent 划分。
 - 多个任务需要并行修改同一仓库时，使用独立 branch + worktree；串行开发不需要 worktree。
 - 并行任务涉及共享 API、Schema、公共类型或核心状态时，先确定契约再开发。

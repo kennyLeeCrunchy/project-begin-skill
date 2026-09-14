@@ -27,6 +27,19 @@ git branch --show-current
 
 确认当前分支和已有未提交修改。如果用户没有提出 Git 管理要求，就继续在当前分支完成开发和提交。
 
+创建或切换 branch / worktree 前，需要明确处理当前工作区：
+
+- 创建 branch 本身不要求先提交；但 branch / worktree 从已有 commit 或 ref 建立，当前未提交改动不会自动进入新的 worktree。
+- 如果当前改动要随新 branch / worktree 一起走，先提交（优先）：
+
+  ```bash
+  git add path/to/file
+  git commit -m "describe the change"
+  ```
+
+- 只有用户明确要求时才使用 `git stash`；不得自动 commit、stash 或丢弃未提交改动。
+- 如果工作区有与新任务无关的未提交改动，先确认归属，不要直接创建、切换或合并。
+
 不要因为开始一个新功能就自动切换到 `main` 或创建 `feat/xxx`。用户明确要求新分支时再创建：
 
 ```bash
