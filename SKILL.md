@@ -21,6 +21,17 @@ Every successful run leaves all three files present and internally consistent:
 
 Use `assets/AGENTS.md.template` as the entrypoint structure, `assets/agent-workflow.md.template` as the plan/state workflow source, and `assets/git-workflow.md.template` as the Git collaboration source.
 
+## Developer-controlled repository actions
+
+The skill installs collaboration rules; it grants no permission to publish repository changes. Encode these boundaries in the target entrypoint and Git workflow:
+
+- The agent develops, validates, reviews, and prepares commits. Commit and ordinary push actions require task-scoped authorization; an existing explicit authorization does not need repeated confirmation.
+- The developer decides whether and when to create or update Issues and PRs. The agent may draft them and publishes only when explicitly asked. Development requests, successful checks, and workflow completion do not authorize publication or imply PR merge approval.
+- The developer performs PR merges, integration into the primary branch, enabling auto-merge, force pushes, and rewriting published history. The agent supplies findings and suggested commands.
+- Preserve project-specific branch and Issue references without turning them into automatic creation, publication, closure, or merge steps. Authorization for one action does not carry over to other repositories or future tasks.
+
+Distill lasting decisions into concise rules rather than copying conversation wording, transient status, or task narratives. When repairing existing documents, remove contradictory automatic publication or merge instructions.
+
 ## README 管理
 
 `README.md` 是面向人的项目说明和上手入口，与面向 Agent 的 `AGENTS.md`、详细协作规则 `/docs` 分工不同。
@@ -59,6 +70,7 @@ Do not report success until all checks pass:
 - No bracketed template placeholder remains when repository evidence can resolve it.
 - Existing project-specific constraints are preserved.
 - The workflow does not treat small requirements, config tweaks, bugfixes, or documentation edits as plan-update triggers.
+- Entrypoints and Git workflows preserve developer control of Issue/PR publication, merges, and published history; no completion step implies permission for these actions.
 - The final report lists files created, merged, or left unchanged.
 
 If any required output cannot be written, report the initialization as incomplete rather than silently substituting an “equivalent” setup.

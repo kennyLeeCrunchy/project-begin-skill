@@ -1,5 +1,7 @@
 # Agent Workflow
 
+仓库操作的授权与职责划分见 [`docs/git-workflow.md`](git-workflow.md)；plan/state 的维护不授予创建 Issue、发布 PR 或合并的权限。
+
 本文件用于记录 Agent 协作中的 plan/state 详细规则。仅当用户明确要求查看协作规则、读取整体方案、读取当前进度，或确实需要创建/更新 `plan.md`、`state.md` 时读取。
 
 # Plan 文件
