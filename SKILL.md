@@ -27,7 +27,7 @@ The skill installs collaboration rules; it grants no permission to publish repos
 
 - The agent develops, validates, reviews, and prepares commits. Commit and ordinary push actions require task-scoped authorization; an existing explicit authorization does not need repeated confirmation.
 - The developer decides whether and when to create or update Issues and PRs. The agent may draft them and publishes only when explicitly asked. Development requests, successful checks, and workflow completion do not authorize publication or imply PR merge approval.
-- The developer performs PR merges, integration into the primary branch, enabling auto-merge, force pushes, and rewriting published history. The agent supplies findings and suggested commands.
+- The agent merges PRs or integrates into the primary branch only when the developer explicitly asks for that merge, never on its own initiative. The developer enables auto-merge, force-pushes, and rewrites published history. The agent supplies findings and suggested commands.
 - Preserve project-specific branch and Issue references without turning them into automatic creation, publication, closure, or merge steps. Authorization for one action does not carry over to other repositories or future tasks.
 
 Distill lasting decisions into concise rules rather than copying conversation wording, transient status, or task narratives. When repairing existing documents, remove contradictory automatic publication or merge instructions.
@@ -70,7 +70,7 @@ Do not report success until all checks pass:
 - No bracketed template placeholder remains when repository evidence can resolve it.
 - Existing project-specific constraints are preserved.
 - The workflow does not treat small requirements, config tweaks, bugfixes, or documentation edits as plan-update triggers.
-- Entrypoints and Git workflows preserve developer control of Issue/PR publication, merges, and published history; no completion step implies permission for these actions.
+- Entrypoints and Git workflows preserve developer control of Issue/PR publication, merges, and published history: merges happen only on an explicit developer request, and no completion step implies permission for these actions.
 - The final report lists files created, merged, or left unchanged.
 
 If any required output cannot be written, report the initialization as incomplete rather than silently substituting an “equivalent” setup.
@@ -83,3 +83,7 @@ If any required output cannot be written, report the initialization as incomplet
 - This skill installs plan/state rules but does not itself create, read, or update `plan.md` or `state.md` unless the user separately requests it.
 - Do not expose secrets while inspecting environment configuration.
 - Do not modify product code merely to make the documentation template look complete.
+
+## Claude Code note
+
+`AGENTS.md` is the single source of truth for both Codex and Claude Code. Current Claude Code loads `AGENTS.md` directly, so do not create a `CLAUDE.md` by default. Only when a Claude Code environment is confirmed not to load `AGENTS.md`, add a `CLAUDE.md` containing just `@AGENTS.md` (Claude Code's import syntax); if a `CLAUDE.md` already exists, add that import line instead of duplicating content, and never overwrite its project-specific rules.
